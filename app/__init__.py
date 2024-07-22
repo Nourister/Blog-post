@@ -1,4 +1,4 @@
-from website import app, db
+from app import app, db
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,11 +10,11 @@ db = SQLAlchemy(app)
 
 
 # Import models
-from website.models import Post, User
+from app.models import Post, User
 
 # Cretae database tables if do not exit
 with app.app_context():
     db.create_all()
 
 # Import routes
-from website import routes
+from app import routes
