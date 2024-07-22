@@ -1,14 +1,14 @@
-from flask import current_app, render_template, redirect, url_for, flash, request
+from flask import current_app as app, render_template, redirect, url_for, flash, request
 from app import db
 from app.forms import LoginForm, RegistrationForm
 from app.models import User, Post
 
-posts =[
+posts = [
     {
         'author': 'Corey Schafer',
         'title': 'Blog Post 1',
         'content': 'First post content',
-        'date_posted': 'April 20, 2018'        
+        'date_posted': 'April 20, 2018'
     },
     {
         'author': 'Jane Doe',
@@ -17,7 +17,6 @@ posts =[
         'date_posted': 'April 21, 2018'
     }
 ]
-
 
 @app.route("/")
 def home():
@@ -33,7 +32,7 @@ def register():
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
-    return render_template('register.html',title='Register', form=form)
+    return render_template('register.html', title='Register', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -44,4 +43,4 @@ def login():
             return redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
-    return render_template('login.html',title='Login', form=form)
+    return render_template('login.html', title='Login', form=form)
